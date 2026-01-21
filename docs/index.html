@@ -148,18 +148,6 @@
     }
     .callout strong{color:var(--text);}
 
-    .mono{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size:12px;
-      color:var(--muted);
-      background:rgba(0,0,0,0.20);
-      border:1px solid rgba(255,255,255,0.08);
-      padding:10px 12px;
-      border-radius:14px;
-      overflow:auto;
-      max-width:100ch;
-    }
-
     .list{
       margin-top:18px;
       padding-left:22px;
@@ -272,47 +260,6 @@
       </div>
     </section>
 
-    <!-- Chapter Decks (PDF) — repo layout example: /decks/ch0N/deck_chapter_N.pdf -->
-    <section class="section" id="decks">
-      <h2>Chapter Decks (PDF)</h2>
-      <p>
-        Slide decks (PDF) for fast chapter review, team enablement, and classroom use.
-      </p>
-
-      <div class="grid">
-        <!-- TODO: Replace repo paths to match your financial advisors repo layout -->
-        <a class="card linkcard" href="https://github.com/alexdibol/ai-financial-advisors/blob/main/decks/ch01/deck_chapter_1.pdf" target="_blank" rel="noopener">
-          <h3>Deck — Chapter 1</h3>
-          <p>Level 1 (Chatbots): compliant drafting—emails, meeting notes, summaries, and client-ready tone control.</p>
-          <div class="hint">Open PDF →</div>
-        </a>
-
-        <a class="card linkcard" href="https://github.com/alexdibol/ai-financial-advisors/blob/main/decks/ch02/deck_chapter_2.pdf" target="_blank" rel="noopener">
-          <h3>Deck — Chapter 2</h3>
-          <p>Level 2 (Reasoners): structured suitability/best-interest scaffolds, gap detection, and assumption control.</p>
-          <div class="hint">Open PDF →</div>
-        </a>
-
-        <a class="card linkcard" href="https://github.com/alexdibol/ai-financial-advisors/blob/main/decks/ch03/deck_chapter_3.pdf" target="_blank" rel="noopener">
-          <h3>Deck — Chapter 3</h3>
-          <p>Level 3 (Agents): supervised workflows (intake → IPS draft → disclosures → review packet → archive).</p>
-          <div class="hint">Open PDF →</div>
-        </a>
-
-        <a class="card linkcard" href="https://github.com/alexdibol/ai-financial-advisors/blob/main/decks/ch04/deck_chapter_4.pdf" target="_blank" rel="noopener">
-          <h3>Deck — Chapter 4</h3>
-          <p>Level 4 (Innovators): playbooks, evaluation harnesses, controlled releases, and advisor enablement.</p>
-          <div class="hint">Open PDF →</div>
-        </a>
-
-        <a class="card linkcard" href="https://github.com/alexdibol/ai-financial-advisors/blob/main/decks/ch05/deck_chapter_5.pdf" target="_blank" rel="noopener">
-          <h3>Deck — Chapter 5</h3>
-          <p>Level 5 (Organizations): operating model—QA gates, approvals, supervision evidence, and audit-ready bundles.</p>
-          <div class="hint">Open PDF →</div>
-        </a>
-      </div>
-    </section>
-
     <section class="section" id="notebooks">
       <h2>Chapter Notebooks (Colab)</h2>
       <p>
@@ -403,30 +350,43 @@
     </section>
 
     <section class="section" id="evaluations">
-      <h2>Independent AI Evaluation (Optional)</h2>
+      <h2>Independent Opinion (Optional)</h2>
       <p>
-        If you include third-party model evaluations, keep them clearly labeled as non-authoritative and non-validated.
-        Below is a placeholder section you can keep or remove.
+        This section is intentionally labeled as <em>non-authoritative</em>. It is included to demonstrate how third-party feedback
+        can be documented and versioned without being confused for verification of factual correctness or compliance.
       </p>
 
       <div class="reviewbox">
-        <div><strong>Placeholder:</strong> Classroom-focused review summary</div>
-        <div class="stars" aria-label="Five stars (placeholder)">⭐⭐⭐⭐⭐</div>
+        <div><strong>Book Evaluation: Practical Applications of Generative AI in Financial Advice and Wealth Management</strong></div>
+        <div class="stars" aria-label="Five stars">⭐⭐⭐⭐⭐</div>
 
         <hr/>
 
-        <div><strong>What this section is:</strong></div>
-        <ul>
-          <li>A teachability assessment (structure, clarity, lab quality), not a claim of correctness.</li>
-          <li>A way to show how evaluation can be documented and versioned as part of governance.</li>
-        </ul>
+        <p style="margin:0;">
+          This book is a definitive guide for MBA and MFIN students, particularly those pursuing licensure in financial advisory
+          (RIA/Broker-Dealer), as it pragmatically maps Generative AI to the rigors of regulated practice. By organizing the curriculum
+          into a five-stage "maturity ladder"—from simple drafting assistants to fully integrated organizational operating models—the author
+          provides a structured path for students to move from theoretical understanding to defensible execution in just one month.
+          The inclusion of companion Colab notebooks for every chapter allows students to practice the "compliance-by-design" workflows
+          essential for modern finance, ensuring they can produce auditable artifacts (e.g., verification logs, risk-flagged review packets)
+          rather than just generating text.
+        </p>
+
+        <p style="margin:12px 0 0;">
+          The text’s standout contribution is its uncompromising "governance-first" philosophy, which positions AI as infrastructure for fiduciary
+          responsibility rather than a replacement for judgment. It fundamentally inoculates students against technological obsolescence by focusing on
+          durable professional disciplines—separating facts from assumptions, enforcing "stop-if" rules for missing data, and maintaining
+          human-in-the-loop validation—rather than fleeting model capabilities. For aspiring financial advisors, this approach transforms AI from a
+          compliance risk into a powerful engine for consistency and scale, teaching them to leverage automation while strictly upholding their ethical
+          and regulatory obligations to clients.
+        </p>
 
         <hr/>
 
-        <div><strong>What this section is not:</strong></div>
+        <div><strong>Labeling note:</strong></div>
         <ul>
-          <li>Not a substitute for advisor judgment, supervision, or client-specific verification.</li>
-          <li>Not proof that any output is suitable, compliant, or ready to rely on without review.</li>
+          <li><strong>Source:</strong> Gemini (generated evaluation text).</li>
+          <li><strong>Status:</strong> Not verified; included as an example of how to document independent opinion under governance-first norms.</li>
         </ul>
       </div>
     </section>
