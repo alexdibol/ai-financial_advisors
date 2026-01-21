@@ -1,1 +1,479 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AI for Financial Advisors (Governance-First)</title>
+  <meta name="description" content="AI for Financial Advisors (Governance-First): a five-level maturity ladder for U.S. wealth management and financial advice, with a PDF book and Google Colab notebooks (Chapters 1–5)." />
+
+  <style>
+    :root{
+      --bg:#07080d;
+      --panel:#0f1220;
+      --panel-2:#141836;
+      --text:#eef0ff;
+      --muted:#b8bddb;
+      --border:rgba(255,255,255,0.09);
+      --accent:#7aa2ff;
+      --accent2:#6ee7c8;
+      --warn:#ffd27a;
+      --shadow:0 18px 60px rgba(0,0,0,0.45);
+    }
+    *{box-sizing:border-box;}
+    html,body{height:100%;}
+    body{
+      margin:0;
+      background:
+        radial-gradient(900px 600px at 15% 10%, rgba(122,162,255,0.18), transparent 55%),
+        radial-gradient(800px 600px at 85% 20%, rgba(110,231,200,0.12), transparent 55%),
+        radial-gradient(900px 650px at 60% 95%, rgba(255,210,122,0.07), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      line-height:1.6;
+    }
+    a{color:var(--accent);text-decoration:none;}
+    a:hover{color:var(--accent2);text-decoration:underline;}
+    .container{max-width:1140px;margin:0 auto;padding:32px 20px 84px;}
+
+    .hero{
+      padding:38px 34px;
+      border-radius:22px;
+      background:linear-gradient(180deg, rgba(20,24,54,0.92), rgba(15,18,32,0.88));
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero:before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(520px 360px at 16% 0%, rgba(122,162,255,0.18), transparent 60%),
+        radial-gradient(460px 330px at 92% 18%, rgba(110,231,200,0.10), transparent 60%),
+        radial-gradient(520px 360px at 55% 110%, rgba(255,210,122,0.08), transparent 60%);
+      pointer-events:none;
+      opacity:0.9;
+    }
+    .hero > *{position:relative;}
+
+    .kicker{
+      text-transform:uppercase;
+      letter-spacing:0.18em;
+      font-size:12px;
+      color:var(--muted);
+    }
+    .hero h1{
+      font-size:38px;
+      margin:12px 0 10px;
+      line-height:1.15;
+      max-width:52ch;
+      text-transform:uppercase;
+      letter-spacing:0.02em;
+    }
+    .subtitle{
+      margin:0;
+      max-width:100ch;
+      color:var(--muted);
+      font-size:16px;
+    }
+
+    .section{margin-top:56px;}
+    .section h2{
+      font-size:28px;
+      margin:0 0 14px;
+      letter-spacing:-0.02em;
+    }
+    .section p{color:var(--muted);max-width:100ch;margin:10px 0;}
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+      gap:18px;
+      margin-top:22px;
+    }
+    .card{
+      padding:20px 20px;
+      border-radius:18px;
+      background:rgba(20,24,54,0.72);
+      border:1px solid var(--border);
+      box-shadow:0 10px 30px rgba(0,0,0,0.30);
+    }
+    .card h3{
+      margin:0 0 10px;
+      font-size:18px;
+      line-height:1.25;
+    }
+    .card p{
+      margin:0;
+      font-size:14px;
+      color:var(--muted);
+    }
+
+    .linkcard{
+      display:block;
+      cursor:pointer;
+      transition: transform 0.12s ease, border-color 0.12s ease, background 0.12s ease;
+      color:inherit;
+      text-decoration:none;
+    }
+    .linkcard:hover{
+      transform: translateY(-2px);
+      border-color: rgba(122,162,255,0.35);
+      background: rgba(20,24,54,0.86);
+      text-decoration:none;
+    }
+    .linkcard:focus{
+      outline:2px solid rgba(110,231,200,0.46);
+      outline-offset:3px;
+    }
+    .hint{
+      margin-top:12px;
+      font-size:12px;
+      color:var(--muted);
+      opacity:0.92;
+      font-weight:700;
+      letter-spacing:0.02em;
+    }
+
+    .callout{
+      margin-top:18px;
+      padding:18px 18px;
+      border-radius:18px;
+      border:1px solid rgba(122,162,255,0.18);
+      background:linear-gradient(135deg, rgba(122,162,255,0.06), rgba(110,231,200,0.04));
+      color:var(--muted);
+      max-width:100ch;
+    }
+    .callout strong{color:var(--text);}
+
+    .mono{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size:12px;
+      color:var(--muted);
+      background:rgba(0,0,0,0.20);
+      border:1px solid rgba(255,255,255,0.08);
+      padding:10px 12px;
+      border-radius:14px;
+      overflow:auto;
+      max-width:100ch;
+    }
+
+    .list{
+      margin-top:18px;
+      padding-left:22px;
+      color:var(--muted);
+      max-width:100ch;
+    }
+    .list li{margin-bottom:12px;}
+    .list strong{color:var(--text);}
+
+    .reviewbox{
+      margin-top:18px;
+      padding:18px;
+      border-radius:18px;
+      border:1px solid rgba(110,231,200,0.18);
+      background:linear-gradient(135deg, rgba(110,231,200,0.06), rgba(122,162,255,0.05));
+      color:var(--muted);
+      max-width:100ch;
+    }
+    .reviewbox strong{color:var(--text);}
+    .reviewbox .stars{color:var(--warn);font-weight:900;letter-spacing:0.08em;}
+    .reviewbox ul{margin:10px 0 0 18px; padding:0;}
+    .reviewbox li{margin:8px 0;}
+    .reviewbox hr{
+      border:0;
+      border-top:1px solid rgba(255,255,255,0.10);
+      margin:14px 0;
+    }
+
+    .footer{
+      margin-top:80px;
+      padding-top:24px;
+      border-top:1px solid var(--border);
+      color:var(--muted);
+      font-size:13px;
+      text-align:center;
+    }
+    .small{font-size:13px;color:var(--muted);max-width:100ch;}
+    .pillrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;}
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.10);
+      background:rgba(0,0,0,0.18);
+      color:var(--muted);
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:0.02em;
+    }
+    .dot{
+      width:8px;height:8px;border-radius:999px;
+      background:rgba(122,162,255,0.9);
+      box-shadow:0 0 0 3px rgba(122,162,255,0.18);
+    }
+    .dot.g{background:rgba(110,231,200,0.95); box-shadow:0 0 0 3px rgba(110,231,200,0.18);}
+    .dot.y{background:rgba(255,210,122,0.95); box-shadow:0 0 0 3px rgba(255,210,122,0.18);}
+  </style>
+</head>
+
+<body>
+  <main class="container">
+
+    <section class="hero">
+      <div class="kicker">Governance-first · wealth management & financial advice · PDF + Colab notebooks (Chapters 1–5)</div>
+      <h1>AI for Financial Advisors</h1>
+
+      <p class="subtitle">
+        An educational, governance-first guide for U.S. wealth management and financial advice. GenAI is treated as
+        <em>drafting and analysis support</em>—not “autopilot advice.” As capability increases across the maturity ladder,
+        risk increases too: supervision, recordkeeping, privacy, suitability/best-interest discipline, and client protection
+        must scale so outputs remain defensible, reviewable, and safe for client-facing use.
+      </p>
+
+      <div class="pillrow" aria-label="Governance priorities">
+        <span class="pill"><span class="dot"></span> Fiduciary / Best-Interest Discipline</span>
+        <span class="pill"><span class="dot g"></span> Supervision + Recordkeeping</span>
+        <span class="pill"><span class="dot y"></span> Privacy + Minimum-Necessary Data</span>
+      </div>
+    </section>
+
+    <section class="section" id="downloads">
+      <h2>Download and Run</h2>
+      <p>
+        The book PDF is published as a versioned GitHub Release asset. The companion notebooks live in this repository
+        and open directly in Google Colab.
+      </p>
+
+      <div class="grid">
+        <!-- TODO: Replace repo + release paths to match your financial advisors repo -->
+        <a class="card linkcard" href="https://github.com/alexdibol/ai-financial-advisors/releases/download/book-ai-financial-advisors-v01/AI_for_Financial_Advisors.pdf" target="_blank" rel="noopener">
+          <h3>Book PDF</h3>
+          <p>Download the current release edition of the book as a single PDF.</p>
+          <div class="hint">Download PDF →</div>
+        </a>
+
+        <!-- IMPORTANT: If your repo uses notebooks (lowercase), keep it exactly like this -->
+        <a class="card linkcard" href="https://github.com/alexdibol/ai-financial-advisors/tree/main/notebooks" target="_blank" rel="noopener">
+          <h3>Notebooks Folder</h3>
+          <p>Browse all chapter notebooks in the repository (chapter_1 … chapter_5).</p>
+          <div class="hint">Open folder →</div>
+        </a>
+      </div>
+
+      <div class="callout">
+        <strong>Governance-first promise:</strong> Every chapter teaches “capability ↑ ⇒ risk ↑ ⇒ controls ↑.”
+        The goal is not faster output. The goal is output that survives supervision, can be reconstructed, and does not
+        create avoidable client harm.
+      </div>
+    </section>
+
+    <!-- Chapter Decks (PDF) — repo layout example: /decks/ch0N/deck_chapter_N.pdf -->
+    <section class="section" id="decks">
+      <h2>Chapter Decks (PDF)</h2>
+      <p>
+        Slide decks (PDF) for fast chapter review, team enablement, and classroom use.
+      </p>
+
+      <div class="grid">
+        <!-- TODO: Replace repo paths to match your financial advisors repo layout -->
+        <a class="card linkcard" href="https://github.com/alexdibol/ai-financial-advisors/blob/main/decks/ch01/deck_chapter_1.pdf" target="_blank" rel="noopener">
+          <h3>Deck — Chapter 1</h3>
+          <p>Level 1 (Chatbots): compliant drafting—emails, meeting notes, summaries, and client-ready tone control.</p>
+          <div class="hint">Open PDF →</div>
+        </a>
+
+        <a class="card linkcard" href="https://github.com/alexdibol/ai-financial-advisors/blob/main/decks/ch02/deck_chapter_2.pdf" target="_blank" rel="noopener">
+          <h3>Deck — Chapter 2</h3>
+          <p>Level 2 (Reasoners): structured suitability/best-interest scaffolds, gap detection, and assumption control.</p>
+          <div class="hint">Open PDF →</div>
+        </a>
+
+        <a class="card linkcard" href="https://github.com/alexdibol/ai-financial-advisors/blob/main/decks/ch03/deck_chapter_3.pdf" target="_blank" rel="noopener">
+          <h3>Deck — Chapter 3</h3>
+          <p>Level 3 (Agents): supervised workflows (intake → IPS draft → disclosures → review packet → archive).</p>
+          <div class="hint">Open PDF →</div>
+        </a>
+
+        <a class="card linkcard" href="https://github.com/alexdibol/ai-financial-advisors/blob/main/decks/ch04/deck_chapter_4.pdf" target="_blank" rel="noopener">
+          <h3>Deck — Chapter 4</h3>
+          <p>Level 4 (Innovators): playbooks, evaluation harnesses, controlled releases, and advisor enablement.</p>
+          <div class="hint">Open PDF →</div>
+        </a>
+
+        <a class="card linkcard" href="https://github.com/alexdibol/ai-financial-advisors/blob/main/decks/ch05/deck_chapter_5.pdf" target="_blank" rel="noopener">
+          <h3>Deck — Chapter 5</h3>
+          <p>Level 5 (Organizations): operating model—QA gates, approvals, supervision evidence, and audit-ready bundles.</p>
+          <div class="hint">Open PDF →</div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section" id="notebooks">
+      <h2>Chapter Notebooks (Colab)</h2>
+      <p>
+        Each notebook is executable, auditable, and classroom-ready. Labs produce structured outputs and governance artifacts
+        (run manifest, prompts log, risk log, deliverables bundle) so results are reviewable rather than ephemeral.
+      </p>
+
+      <div class="grid">
+        <!-- IMPORTANT: Mirror your folder name exactly (notebooks vs NOTEBOOKS) in Colab URLs -->
+        <a class="card linkcard" href="https://colab.research.google.com/github/alexdibol/ai-financial-advisors/blob/main/notebooks/chapter_1.ipynb" target="_blank" rel="noopener">
+          <h3>Chapter 1 — Level 1 (Chatbots)</h3>
+          <p>Drafting: meeting follow-ups, client emails, summaries, and documentation with facts-first discipline.</p>
+          <div class="hint">Open in Colab →</div>
+        </a>
+
+        <a class="card linkcard" href="https://colab.research.google.com/github/alexdibol/ai-financial-advisors/blob/main/notebooks/chapter_2.ipynb" target="_blank" rel="noopener">
+          <h3>Chapter 2 — Level 2 (Reasoners)</h3>
+          <p>Reasoning: alternatives, trade-offs, assumption registers, suitability rationale scaffolds.</p>
+          <div class="hint">Open in Colab →</div>
+        </a>
+
+        <a class="card linkcard" href="https://colab.research.google.com/github/alexdibol/ai-financial-advisors/blob/main/notebooks/chapter_3.ipynb" target="_blank" rel="noopener">
+          <h3>Chapter 3 — Level 3 (Agents)</h3>
+          <p>Supervised multi-step workflow: intake → structure → draft → QA → approval → archive.</p>
+          <div class="hint">Open in Colab →</div>
+        </a>
+
+        <a class="card linkcard" href="https://colab.research.google.com/github/alexdibol/ai-financial-advisors/blob/main/notebooks/chapter_4.ipynb" target="_blank" rel="noopener">
+          <h3>Chapter 4 — Level 4 (Innovators)</h3>
+          <p>Firm assets: reusable prompts, playbooks, evaluations, and controlled rollouts with change management.</p>
+          <div class="hint">Open in Colab →</div>
+        </a>
+
+        <a class="card linkcard" href="https://colab.research.google.com/github/alexdibol/ai-financial-advisors/blob/main/notebooks/chapter_5.ipynb" target="_blank" rel="noopener">
+          <h3>Chapter 5 — Level 5 (Organizations)</h3>
+          <p>Operating model simulation: ownership, evidence, QA gates, sign-off, supervision-ready artifacts.</p>
+          <div class="hint">Open in Colab →</div>
+        </a>
+      </div>
+
+      <div class="callout">
+        <strong>Important:</strong> Notebooks are educational. Do not paste confidential client information into external model prompts.
+        Use redaction/anonymization and “minimum necessary” inputs by default. Document any exception and follow firm policy.
+      </div>
+    </section>
+
+    <section class="section" id="ladder">
+      <h2>The Five-Level Maturity Ladder</h2>
+      <p>
+        The book’s organizing spine is a progression from individual drafting assistance to fully governed, organization-grade operations.
+        The point is not “more AI.” The point is usefulness that survives supervision, client scrutiny, and reconstruction.
+      </p>
+
+      <ul class="list">
+        <li><strong>Level 1 — Chatbots:</strong> supervised drafting of client communications, meeting notes, and internal documentation.</li>
+        <li><strong>Level 2 — Reasoners:</strong> explicit reasoning structures: alternatives, trade-offs, assumptions, and verification planning.</li>
+        <li><strong>Level 3 — Agents:</strong> multi-step workflows with human checkpoints, role separation, and traceable logs.</li>
+        <li><strong>Level 4 — Innovators:</strong> reusable firm assets (templates, playbooks, evaluations) with controlled releases and regression tests.</li>
+        <li><strong>Level 5 — Organizations:</strong> operating model + governance: intake, suitability checks, QA, approvals, recordkeeping, audit-ready bundles.</li>
+      </ul>
+    </section>
+
+    <section class="section" id="cases">
+      <h2>Recurring Mini-Cases (Used in Every Chapter)</h2>
+      <p>
+        The ladder is taught through recurring wealth-management mini-cases so readers can isolate what changes when AI capability increases:
+        the structure improves, the risk scales, and governance must become more explicit.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Retirement / Distribution Planning</h3>
+          <p>Withdrawal sequencing, cash-flow framing, assumption control, and client-ready explanations with verification gates.</p>
+        </div>
+        <div class="card">
+          <h3>Tax-Aware / Concentrated Stock</h3>
+          <p>Concentration risk, options mapping, tax-sensitive framing (verify rules), and documented alternatives considered.</p>
+        </div>
+        <div class="card">
+          <h3>Alternatives / Illiquids</h3>
+          <p>Liquidity and complexity controls, suitability framing, risk disclosures, and “what must be verified” checklists.</p>
+        </div>
+        <div class="card">
+          <h3>Practice Management / Training</h3>
+          <p>Advisor enablement, supervision workflows, training content, and repeatable, audited internal playbooks.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="evaluations">
+      <h2>Independent AI Evaluation (Optional)</h2>
+      <p>
+        If you include third-party model evaluations, keep them clearly labeled as non-authoritative and non-validated.
+        Below is a placeholder section you can keep or remove.
+      </p>
+
+      <div class="reviewbox">
+        <div><strong>Placeholder:</strong> Classroom-focused review summary</div>
+        <div class="stars" aria-label="Five stars (placeholder)">⭐⭐⭐⭐⭐</div>
+
+        <hr/>
+
+        <div><strong>What this section is:</strong></div>
+        <ul>
+          <li>A teachability assessment (structure, clarity, lab quality), not a claim of correctness.</li>
+          <li>A way to show how evaluation can be documented and versioned as part of governance.</li>
+        </ul>
+
+        <hr/>
+
+        <div><strong>What this section is not:</strong></div>
+        <ul>
+          <li>Not a substitute for advisor judgment, supervision, or client-specific verification.</li>
+          <li>Not proof that any output is suitable, compliant, or ready to rely on without review.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="disclaimer">
+      <h2>License and Disclaimers</h2>
+
+      <p class="small">
+        <strong>Educational disclaimer:</strong> This material is provided for educational purposes only. It does not constitute investment,
+        legal, tax, accounting, or financial advice. A human financial professional must review, verify, and approve any use in practice.
+      </p>
+
+      <p class="small">
+        <strong>Client confidentiality and data hygiene:</strong> Do not paste confidential client information into external model prompts.
+        Use redaction/anonymization and “minimum necessary” inputs by default. Document any exception and follow firm policy and applicable law.
+      </p>
+
+      <p class="small">
+        <strong>Supervision and recordkeeping:</strong> If AI outputs influence client communications or recommendations, retain prompt/output
+        records and reviewer sign-off consistent with your firm’s supervision and record-retention obligations.
+      </p>
+
+      <p class="small">
+        <strong>Facts are not assumptions:</strong> Outputs must clearly separate facts provided by the user from assumptions and open questions.
+        Treat all model-generated content as <em>Not verified</em> until validated by a human.
+      </p>
+
+      <p class="small">
+        <strong>No fabricated sources or product claims:</strong> Zero tolerance for invented product terms, performance claims, fees, tax consequences,
+        or citations. When evidence is missing, the correct output is a verification task list.
+      </p>
+
+      <p class="small">
+        <strong>Repository license:</strong> See the repository’s LICENSE file for terms.
+      </p>
+    </section>
+
+    <footer class="footer">
+      © <span id="year"></span> Alejandro Reynoso · AI for Financial Advisors (Governance-First)
+      <br/>Hosted on GitHub Pages · Built as governed, executable courseware
+    </footer>
+
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
 
