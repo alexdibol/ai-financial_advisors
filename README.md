@@ -13,31 +13,31 @@ The focus is not speed, automation, or “AI recommendations,” but **client pr
 
 ### Book (PDF)
 - **Direct download:**  
-  https://github.com/alexdibol/ai-financial-advisors/blob/main/book/AI_for_Financial_Advisors.pdf
+  https://github.com/alexdibol/ai-financial_advisors/blob/main/book/AI%20FINANCIAL%20ADVISOR%20BOOK.pdf
 
 ---
 
 ### Companion notebooks (Colab-ready)
 - **NOTEBOOKS folder:**  
-  https://github.com/alexdibol/ai-financial-advisors/tree/main/NOTEBOOKS
+  https://github.com/alexdibol/ai-financial_advisors/tree/main/NOTEBOOKS
 
 ---
 
 ### Direct Google Colab links
 - **Chapter 1 — Level 1 (Chatbots):**  
-  https://colab.research.google.com/github/alexdibol/ai-financial-advisors/blob/main/NOTEBOOKS/ch01/chapter_1.ipynb
+  https://colab.research.google.com/github/alexdibol/ai-financial_advisors/blob/main/NOTEBOOKS/chapter_1.ipynb
 
 - **Chapter 2 — Level 2 (Reasoners):**  
-  https://colab.research.google.com/github/alexdibol/ai-financial-advisors/blob/main/NOTEBOOKS/ch02/chapter_2.ipynb
+  https://colab.research.google.com/github/alexdibol/ai-financial_advisors/blob/main/NOTEBOOKS/chapter_2.ipynb
 
 - **Chapter 3 — Level 3 (Agents):**  
-  https://colab.research.google.com/github/alexdibol/ai-financial-advisors/blob/main/NOTEBOOKS/ch03/chapter_3.ipynb
+  https://colab.research.google.com/github/alexdibol/ai-financial_advisors/blob/main/NOTEBOOKS/chapter_3.ipynb
 
 - **Chapter 4 — Level 4 (Innovators):**  
-  https://colab.research.google.com/github/alexdibol/ai-financial-advisors/blob/main/NOTEBOOKS/ch04/chapter_4.ipynb
+  https://colab.research.google.com/github/alexdibol/ai-financial_advisors/blob/main/NOTEBOOKS/chapter_4.ipynb
 
 - **Chapter 5 — Level 5 (Organizations):**  
-  https://colab.research.google.com/github/alexdibol/ai-financial-advisors/blob/main/NOTEBOOKS/ch05/chapter_5.ipynb
+  https://colab.research.google.com/github/alexdibol/ai-financial_advisors/blob/main/NOTEBOOKS/chapter_5.ipynb
 
 ---
 
@@ -123,3 +123,4 @@ This project is released under the **MIT License**.
 
 ## Suggested citation
 Alejandro Reynoso, *AI for Financial Advisors*, companion notebooks repository, GitHub.
+
